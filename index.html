@@ -33,6 +33,8 @@ footer{background:#24140e;color:#e8d9cd;padding:25px 0;text-align:center;font-si
 <script>
 // अपने प्रोडक्ट की फोटो, नाम, विवरण और श्रेणी इस सूची में बदलें।
 const furniture = [
+ {name:"6×6 नक्काशीदार लकड़ी का बेड",category:"bed",label:"बेड",description:"6×6 फीट का सुंदर नक्काशीदार लकड़ी का बेड।",price:"₹35,000",image:"https://raw.githubusercontent.com/bhagrajpunar-ui/jagatamba-barmeri-furniture/main/IMG-20261126-WA0012.jpg"},
+
  {name:"वुडन सोफा",category:"sofa",label:"सोफा",description:"आरामदायक और सुंदर लकड़ी का सोफा।",image:"https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=85"},
  {name:"मॉडर्न बेड",category:"bed",label:"बेड",description:"आपके बेडरूम के लिए शानदार डिजाइन।",image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85"},
  {name:"डाइनिंग टेबल",category:"dining",label:"डाइनिंग",description:"परिवार के साथ भोजन के लिए सुंदर सेट।",image:"https://images.unsplash.com/photo-1617802690992-15d93263d3a9?auto=format&fit=crop&w=900&q=85"},
@@ -41,7 +43,7 @@ const furniture = [
  {name:"स्टोरेज बेड",category:"bed",label:"बेड",description:"उपयोगी स्टोरेज के साथ बेड का विकल्प।",image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=85"}
 ];
 const grid=document.getElementById("productsGrid");
-function render(category="all"){grid.innerHTML="";furniture.filter(p=>category==="all"||p.category===category).forEach(p=>{const card=document.createElement("article");card.className="product";card.innerHTML='<img loading="lazy" alt="'+p.name+'" src="'+p.image+'"><div class="product-body"><span class="tag">'+p.label+'</span><h3>'+p.name+'</h3><p>'+p.description+'</p><a class="btn" href="https://wa.me/917412879253?text=Namaste%2C%20mujhe%20furniture%20ki%20jankari%20chahiye" target="_blank" rel="noopener">WhatsApp पर पूछें</a></div>';grid.appendChild(card);});}
+function render(category="all"){grid.innerHTML="";furniture.filter(p=>category==="all"||p.category===category).forEach(p=>{const card=document.createElement("article");card.className="product";card.innerHTML='<img loading="lazy" alt="'+p.name+'" src="'+p.image+'"><div class="product-body"><span class="tag">'+p.label+'</span><h3>'+p.name+'</h3><p>'+p.description+'</p>'+(p.price?'<h3 style="color:var(--brown2);margin:0 0 14px">'+p.price+'</h3>':'')+'<a class="btn" href="https://wa.me/917412879253?text='+encodeURIComponent("Namaste, mujhe "+p.name+" ke bare me jankari chahiye"+(p.price?" (listed price "+p.price+")":""))+'" target="_blank" rel="noopener">WhatsApp पर पूछें</a></div>';grid.appendChild(card);});}
 document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest("button[data-cat]");if(!b)return;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.cat);});
 document.getElementById("menu").addEventListener("click",()=>document.getElementById("navlinks").classList.toggle("open"));
 document.querySelectorAll("#navlinks a").forEach(a=>a.addEventListener("click",()=>document.getElementById("navlinks").classList.remove("open")));
